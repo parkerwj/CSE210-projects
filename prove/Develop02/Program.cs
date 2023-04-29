@@ -1,5 +1,6 @@
 using System.IO;
 using System.Threading;
+// I have added code that will delay the menu display if you have selected 2. this allows for time to view the previous journal entries.
 class Program
 {
     static void Main(string[] args)
