@@ -9,16 +9,4 @@ public class Journal
             item.DisplayEntry();
         }
     }
-    // public void CreateJournalEntry()
-    // {
-        
-    // }
-    // public void SaveToCSV()
-    // {
-
-    // }
-    // public void LoadFromCSV()
-    // {
-
-    // }
 }

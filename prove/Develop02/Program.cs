@@ -1,5 +1,5 @@
 using System.IO;
-
+using System.Threading;
 class Program
 {
     static void Main(string[] args)
@@ -23,8 +23,8 @@ class Program
         "How did I see the hand of the Lord in my life today?",
         "What was the strongest emotion I felt today?",
         "If I had one thing I could do over today, what would it be?",
-        "What is the most difficult thing i am trying to accomplish today?",
-        "What is one small example of how i have “personalized” your life for the better?"
+        "What is the most difficult thing I am trying to accomplish today?",
+        "What is one small example of how I have “personalized” my life for the better?"
     };
     Journal myJournal = new Journal();
     bool exitProgram = false;
@@ -50,6 +50,7 @@ class Program
                 break;
             case 2:
                 myJournal.DisplayJournalEntries();
+                Thread.Sleep(5000);
                 break;
             case 3:
                 Console.Write("What is the file name? (ex. myFile.csv) ");
