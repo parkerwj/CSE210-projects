@@ -12,7 +12,8 @@ class Program
             "   1. Start Breathing Activity",
             "   2. Start Reflecting Activity",
             "   3. Start Listing Activity",
-            "   4. Quit",
+            "   4. Start Senses Activity",
+            "   5. Quit",
             "Select a choice from the menu: "
         };
 
@@ -51,6 +52,13 @@ class Program
                 listingActivity.DisplayEndMessage();
                 break;
             case 4:
+                Console.Clear();
+                SensesActivity sensesActivity = new SensesActivity(0,"Senses Activity","This exercise is called 'five senses,' and provides guidelines on practicing mindfulness quickly in nearly any situation. All that is needed is to notice something you are experiencing with one of the five senses.");
+                sensesActivity.DisplayStartMessage();
+                sensesActivity.DisplayPrompt();
+                sensesActivity.DisplayEndMessage();
+                break;
+            case 5:
                 exitProgram = true;
                 break;
             default:
