@@ -43,4 +43,5 @@ abstract class Goal
     {
         return goalPoints;
     }
+    public abstract int GetBonus();
 }

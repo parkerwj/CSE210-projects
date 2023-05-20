@@ -97,8 +97,9 @@ class AllGoals
             {
                 allGoals.Add(goal);
             }
-            Console.WriteLine("\nGoals loaded. \n");
         }
+        Console.Write("\nGoals loaded.");
+        Thread.Sleep(2000);
     }
     public string DisplayGetGoalFile()
         {
@@ -123,11 +124,9 @@ class AllGoals
             int recordEvent = int.Parse(Console.ReadLine()) -1;
             allGoals[recordEvent].RecordEvent();
             string test = allGoals[recordEvent].GetType().ToString();
-            totalPoints += allGoals[recordEvent].GetGoalPoints();
-
-            Console.WriteLine(string.Format("You now have {0} points.", totalPoints.ToString()));
-            Console.WriteLine("\nPress enter to continue.");
-            Console.ReadLine();
+            totalPoints += allGoals[recordEvent].GetGoalPoints() + allGoals[recordEvent].GetBonus();
+            Console.WriteLine(string.Format("You now have {0} point(s).", totalPoints.ToString()));
+            Thread.Sleep(3000);
         }
 
 }

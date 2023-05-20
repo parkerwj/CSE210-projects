@@ -21,9 +21,13 @@ class SimpleGoal : Goal
     {
         return string.Format("[{0}] {1} ({2})", ((goalComplete == false) ? " ": "X"), GetGoalName(), GetGoalDescription());
     }
+    public override int GetBonus()
+    {
+        return 0;
+    }
     public override void RecordEvent()
     {
-        Console.WriteLine(string.Format("\nCongratulations! You have earned {0}", GetGoalPoints()));
+        Console.WriteLine(string.Format("\nCongratulations! You have earned {0} point(s).", GetGoalPoints()));
         goalComplete = true;
     }
 }

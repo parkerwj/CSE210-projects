@@ -32,9 +32,16 @@ class ChecklistGoal : Goal
         Console.Write("What is the bonus for accomplishing it that many times? ");
         goalBonus = int.Parse(Console.ReadLine());
     }
-    public int GetBonus()
+    public override int GetBonus()
     {
-        return goalBonus;
+        if (goalAttempts == goalAmount)
+        {
+            return goalBonus;
+        }
+        else
+        {
+            return 0;
+        }
     }
     public override string ToCSVRecord()
     {
@@ -49,12 +56,12 @@ class ChecklistGoal : Goal
         goalAttempts ++;
         if (goalAttempts == goalAmount)
         {
-            Console.WriteLine(string.Format("\nCongratulations! You have earned {0} points and {1} bonus points", GetGoalPoints(),GetBonus()));
+            Console.WriteLine(string.Format("\nCongratulations! You have earned {0} point(s) and {1} bonus point(s).", GetGoalPoints(),GetBonus()));
             goalComplete = true;
         }
         else
         {
-            Console.WriteLine(string.Format("\nCongratulations! You have earned {0}", GetGoalPoints()));
+            Console.WriteLine(string.Format("\nCongratulations! You have earned {0} point(s).", GetGoalPoints()));
         }
 
     }
