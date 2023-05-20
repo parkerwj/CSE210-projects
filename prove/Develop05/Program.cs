@@ -12,6 +12,7 @@ class Program
 
         while (userMainMenuSelection != 6)
         {
+            Console.Clear();
             allGoals.DisplayPoints();
             userMainMenuSelection = menu.DisplayGetMainMenu();
 
@@ -32,6 +33,9 @@ class Program
                     
                     case 3:
                         goal = new ChecklistGoal();
+                        break;
+                    default:
+                        Console.WriteLine("Invalid input, try again. ");
                         break;
                 }
                 if (goal != null)

@@ -16,7 +16,7 @@ abstract class Goal
     }
     public void DisplayGetGoalName()
     {   
-        Console.WriteLine("What is the name of your goal? ");
+        Console.Write("\nWhat is the name of your goal? ");
         goalName = Console.ReadLine();
     }
     public void DisplayGetGoalDescription()
@@ -42,20 +42,5 @@ abstract class Goal
     public int GetGoalPoints()
     {
         return goalPoints;
-    }
-    public override bool Equals(object obj)
-    {
-        Goal otherGoal = (Goal) obj;
-        bool retValue = false;
-
-        if (goalName == otherGoal.GetGoalName() && goalDescription == otherGoal.GetGoalDescription())
-        {
-            retValue = true;
-        }
-        return retValue;
-    }
-    public override int GetHashCode()
-    {
-        return base.GetHashCode();
     }
 }

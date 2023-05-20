@@ -23,7 +23,7 @@ class SimpleGoal : Goal
     }
     public override void RecordEvent()
     {
-        Console.WriteLine(string.Format("Congratulations! You have earned {0}", GetGoalPoints()));
+        Console.WriteLine(string.Format("\nCongratulations! You have earned {0}", GetGoalPoints()));
         goalComplete = true;
     }
 }

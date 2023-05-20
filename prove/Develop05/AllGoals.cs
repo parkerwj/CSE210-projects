@@ -1,4 +1,5 @@
 using System.IO;
+using System.Threading;
 class AllGoals
 {
     private List<Goal> allGoals = new List<Goal>();
@@ -11,6 +12,12 @@ class AllGoals
     {
         Console.WriteLine(string.Format("You have {0} points.\n", totalPoints));
     }
+    public int GetBonus()
+    {
+        ChecklistGoal checklistGoal = new ChecklistGoal();
+        int getBonus = checklistGoal.GetBonus();
+        return getBonus;
+    }
     public void AddGoal(Goal _goal)
     {
         allGoals.Add(_goal);
@@ -19,12 +26,19 @@ class AllGoals
     {
         if (allGoals.Count() == 0)
         {
-            Console.WriteLine("No goals have been created or loaded.");
+            Console.WriteLine("\nNo goals have been created or loaded.");
+            Thread.Sleep(3000);
+            return;
         }
+        Console.WriteLine("\nThe goals are:");
+        int index = 1;
         foreach (Goal goal in allGoals)
         {
-            Console.WriteLine(goal.ToString());
+            Console.WriteLine(string.Format("   {0}. {1}",index,goal.ToString()));
+            index ++;
         }
+        Console.WriteLine("\nPress enter to continue.");
+        Console.ReadLine();
     }
     public void SaveGoals()
     {
@@ -34,7 +48,11 @@ class AllGoals
             return;
         }
         string fileToSave = DisplayGetGoalFile();
+
         List<string> saveGoals = new List<string>();
+
+        saveGoals.Add(totalPoints.ToString());
+
         foreach (Goal goal in allGoals)
         {
             saveGoals.Add(goal.ToCSVRecord());
@@ -46,7 +64,6 @@ class AllGoals
             {
                 outputFile.WriteLine(goal);
             }
-            
         }
 
         Console.WriteLine("Goals saved.");
@@ -56,6 +73,9 @@ class AllGoals
         Goal goal = null;
         string fileName = DisplayGetGoalFile();
         string[] lines = System.IO.File.ReadAllLines(fileName);
+        string[] loadTotalPoints = lines.Take(1).ToArray();
+        totalPoints = int.Parse(loadTotalPoints.First());
+        lines = lines.Skip(1).ToArray();
         foreach (string line in lines)
         {
             string[] goalParts = line.Split('|');
@@ -69,7 +89,7 @@ class AllGoals
                     goal = new EternalGoal(goalParts[1], goalParts[2], int.Parse(goalParts[3]),bool.Parse(goalParts[4]));
                     break;
                 case 3:
-                    goal = new ChecklistGoal(goalParts[1], goalParts[2], int.Parse(goalParts[3]),bool.Parse(goalParts[4]));
+                    goal = new ChecklistGoal(goalParts[1], goalParts[2], int.Parse(goalParts[3]),bool.Parse(goalParts[4]),int.Parse(goalParts[5]),int.Parse(goalParts[6]),int.Parse(goalParts[7]));
                     break;
                     
             }
@@ -88,18 +108,26 @@ class AllGoals
         }
     public void DisplayGoalsRecordEvent()
         {
-            int index = 1;
-            Console.WriteLine("The goals are:");
-            foreach (Goal goal in allGoals)
-            {
-                Console.WriteLine(string.Format("{0} {1}", index, goal.GetGoalName()));
-            }
-            Console.Write("Which goal did you accomplish? ");
+        if (allGoals.Count() == 0)
+        {
+            Console.WriteLine("No goals have been created or loaded.");
+        }
+        Console.WriteLine("\nThe goals are:");
+        int index = 1;
+        foreach (Goal goal in allGoals)
+        {
+            Console.WriteLine(string.Format("   {0}. {1}",index,goal.ToString()));
+            index ++;
+        }
+            Console.Write("\nWhich goal did you accomplish? ");
             int recordEvent = int.Parse(Console.ReadLine()) -1;
             allGoals[recordEvent].RecordEvent();
+            string test = allGoals[recordEvent].GetType().ToString();
             totalPoints += allGoals[recordEvent].GetGoalPoints();
 
             Console.WriteLine(string.Format("You now have {0} points.", totalPoints.ToString()));
+            Console.WriteLine("\nPress enter to continue.");
+            Console.ReadLine();
         }
 
 }

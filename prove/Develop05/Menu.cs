@@ -33,6 +33,7 @@ class Menu
     }
     public int DisplayGetCreateNewGoalMenu()
     {
+        Console.WriteLine();
         foreach (string menuItem in createGoalMenu)
         {
             Console.WriteLine(menuItem);

@@ -1,6 +1,6 @@
 class EternalGoal : Goal
 {
-    private const int goalType = 1;
+    private const int goalType = 2;
     private bool goalComplete;
     public EternalGoal()
     {
@@ -19,11 +19,11 @@ class EternalGoal : Goal
     }
     public override string ToString()
     {
-        return string.Format("[{0}] {1} ({2})", ((goalComplete == false) ? " ": "X"), GetGoalName(), GetGoalDescription());
+        return string.Format("[{0}] {1} ({2})", ((goalComplete == false) ? " ": " "), GetGoalName(), GetGoalDescription());
     }
     public override void RecordEvent()
     {
-        Console.WriteLine(string.Format("Congratulations! You have earned {0}", GetGoalPoints()));
+        Console.WriteLine(string.Format("\nCongratulations! You have earned {0}", GetGoalPoints()));
         goalComplete = true;
     }
 }
