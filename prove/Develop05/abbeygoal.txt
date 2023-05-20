@@ -1,4 +1,0 @@
-260
-1|eat|sit down and eat ice cream tonight|10|True
-2|sleep|take a nap every day|25|True
-3|edit for 3 days|finish all current jobs|50|True|3|4|25
